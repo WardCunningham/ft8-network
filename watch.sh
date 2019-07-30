@@ -5,7 +5,7 @@ while sleep 15; do
 
  curl -s ward.asia.wiki.org/plugin/wsjt/copy |\
   tee copy.txt | grep ' R[R012-]' |\
-  tee conf.txt | tail -${1:-250} > show.txt
+  tee conf.txt | tail -${1:-50} > show.txt
 
  (echo strict digraph { rankdir=LR layout=neato
 
