@@ -7,6 +7,8 @@ while sleep 15; do
   tee copy.txt | grep ' R[R012-]' |\
   tee conf.txt | tail -${1:-50} > show.txt
 
+ tail -1 conf.txt
+
  (echo strict digraph { rankdir=LR layout=neato
 
   echo node [style=filled fillcolor=palegreen]
@@ -24,6 +26,5 @@ while sleep 15; do
   echo } ) |\
  tee map.dot | dot -Tsvg > view.svg
  cp map.dot view.dot
- wc -l map.dot
 
 done
