@@ -23,8 +23,14 @@ while sleep 15; do
    while(/([A-Z]+\d[A-Z]+) ([A-Z]+\d[A-Z]+)/g)' |\
    sort | uniq
 
+  cat show.txt | perl -ne '
+   print "$& [URL=\"https://duckduckgo.com/?q=$&\"]\n" while(/\b[A-Z]+\d[A-Z]+\b/g)' |\
+   sort | uniq
+
+
   echo } ) |\
  tee map.dot | dot -Tsvg > view.svg
  cp map.dot view.dot
+ scp -q view.svg asia:.wiki/ward.asia.wiki.org/assets/pages/radios-social-network/view.svg
 
 done
