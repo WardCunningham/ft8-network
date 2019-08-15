@@ -4,14 +4,19 @@
 while sleep 15; do
 
  curl -s ward.asia.wiki.org/plugin/wsjt/copy |\
-  tee copy.txt | grep ' R[R012-]' |\
+  tee copy.txt | egrep ' (R[+-]|RR73|RRR)' |\
   tee conf.txt | tail -${1:-50} > show.txt
 
  tail -1 conf.txt
 
  (echo strict digraph { rankdir=LR layout=neato
 
-  echo node [style=filled fillcolor=palegreen]
+  echo node [style=filled fillcolor=gold]
+  cat show.txt | perl -ne '
+   print "$&\n" while(/\b(K9OX|KD7MPA)\b/g)' |\
+   sort | uniq
+
+  echo node [fillcolor=palegreen]
   cat show.txt | perl -ne '
    print "$&\n" while(/\b[A-Z]+\d[A-Z]+\b/g)' |\
    egrep -v '^[WKAN]' |\
