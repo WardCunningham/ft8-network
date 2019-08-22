@@ -12,9 +12,7 @@ while sleep 15; do
  (echo strict digraph { rankdir=LR layout=neato
 
   echo node [style=filled fillcolor=gold]
-  cat show.txt | perl -ne '
-   print "$&\n" while(/\b(K9OX|KD7MPA)\b/g)' |\
-   sort | uniq
+  ruby tag.rb
 
   echo node [fillcolor=palegreen]
   cat show.txt | perl -ne '
