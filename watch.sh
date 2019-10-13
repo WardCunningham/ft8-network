@@ -11,23 +11,23 @@ while sleep 15; do
 
  (echo strict digraph { rankdir=LR layout=neato
 
-  echo node [style=filled fillcolor=gold]
+  echo node [style=filled fillcolor=lightblue]
   ruby tag.rb
 
   echo node [fillcolor=palegreen]
   cat show.txt | perl -ne '
-   print "$&\n" while(/\b[A-Z]+\d[A-Z]+\b/g)' |\
+   print "$&\n" while(/\b[A-Z]+\d{1,2}[A-Z]+\b/g)' |\
    egrep -v '^[WKAN]' |\
    sort | uniq
 
   echo node [fillcolor=bisque]
   cat show.txt | perl -ne '
    print "$2 -> $1\n"
-   while(/([A-Z]+\d[A-Z]+) ([A-Z]+\d[A-Z]+)/g)' |\
+   while(/([A-Z]+\d[A-Z]+) ([A-Z]+\d{1,2}[A-Z]+)/g)' |\
    sort | uniq
 
   cat show.txt | perl -ne '
-   print "$& [URL=\"https://duckduckgo.com/?q=$&\"]\n" while(/\b[A-Z]+\d[A-Z]+\b/g)' |\
+   print "$& [URL=\"https://duckduckgo.com/?q=$&\"]\n" while(/\b[A-Z]+\d{1,2}[A-Z]+\b/g)' |\
    sort | uniq
 
 
