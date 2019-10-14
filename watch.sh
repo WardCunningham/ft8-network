@@ -9,6 +9,8 @@ while sleep 15; do
 
  tail -1 conf.txt
 
+ curl -s found.ward.bay.wiki.org/assets/pages/k9ox-ft8-log/wsjtx_log.adi > log.adi
+
  (echo strict digraph { rankdir=LR layout=neato
 
   echo node [style=filled fillcolor=lightblue]
@@ -26,10 +28,7 @@ while sleep 15; do
    while(/([A-Z]+\d[A-Z]+) ([A-Z]+\d{1,2}[A-Z]+)/g)' |\
    sort | uniq
 
-  cat show.txt | perl -ne '
-   print "$& [URL=\"https://duckduckgo.com/?q=$&\"]\n" while(/\b[A-Z]+\d{1,2}[A-Z]+\b/g)' |\
-   sort | uniq
-
+  ruby worked.rb
 
   echo } ) |\
  tee map.dot | dot -Tsvg > view.svg
