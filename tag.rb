@@ -1,11 +1,11 @@
 require 'set'
 
-@want = Set['K9OX','KD7MPA','W9YB','K1JT','AI6TK','N8JEA']
+@want = Set['K9OX','KD7MPA','W9YB','K1JT','AI6TK','N8JEA','KF7O']
 
 @first = @match = @view = @last = nil
 
 def propagate line
-  if line.match(/\b#{@want.to_a.join("|")}\b/)
+  if line.match(/\b(#{@want.to_a.join("|")})\b/)
     tags = line.scan(/\b[A-Z]+\d[A-Z]+/)
     @want.merge tags
     @match ||= line
